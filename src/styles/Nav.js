@@ -165,28 +165,40 @@ const Nav = () => {
 
   return (
     <Nav>
-      <div className = " navbar"> 
+      <div className = {menuIcon ? "navbar active": " navbar"}> 
         <ul className = "navbar-list">
         <li>
-          <NavLink to = "/home" className=" navbar-link home-link" >
+          <NavLink
+           to = "/" 
+           className=" navbar-link home-link" 
+          onClick = {()=> setMenuIcon(false)} >
           Home
           </NavLink>
 
         </li>
         <li>
-          <NavLink to = "/about" className=" navbar-link " >
+          <NavLink to = "/about"
+           className=" navbar-link "
+           onClick = {()=> setMenuIcon(false)}
+           >
           about
           </NavLink>
           
         </li>
         <li>
-          <NavLink to = "/products" className=" navbar-link " >
+          <NavLink to = "/products"
+           className=" navbar-link "
+           onClick = {()=> setMenuIcon(false)}
+           >
           Products
           </NavLink>
           
         </li>
         <li>
-          <NavLink to = "/contact" className=" navbar-link " >
+          <NavLink to = "/contact" 
+          className=" navbar-link "
+          onClick = {()=> setMenuIcon(false)} >
+      
           Contact
           </NavLink>
           
@@ -196,13 +208,23 @@ const Nav = () => {
          <FiShoppingCart className = "  cart -trolley"/>
          <span className="cart- total--item"> 10 </span>
           </NavLink>
-          
+        
         </li>
         </ul>
         <div  className="mobile-navbar--btn"> </div>
 
-        <CgMenu name = " manu-outline " className= " mobile-nav-icon"/>
-        <CgClose name= "close-outline" className = " mobile-nav-icon close-outline"/> 
+        <CgMenu
+         name = " manu-outline " 
+        className= " mobile-nav-icon"
+        onClick = {()=> setMenuIcon(true)}/>
+
+
+        <CgClose
+         name= "close-outline"
+         className = " mobile-nav-icon close-outline"
+         onClick = {()=> setMenuIcon(false)}/> 
+
+
 
 
       </div >
