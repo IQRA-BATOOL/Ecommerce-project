@@ -10,7 +10,9 @@ const Home = ( ) => {
 
 };
 <>
+<HeroSection myData = {data} />
 <Services/>
 <Trusted/>
+
 </>
 export default Home;
