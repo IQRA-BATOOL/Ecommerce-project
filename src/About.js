@@ -12,7 +12,7 @@ return(
 <>
 { myName}
 
-<HeroSection myData={data}/> {  "  "}
+<HeroSection myData={data}/> 
 
  </>
 
