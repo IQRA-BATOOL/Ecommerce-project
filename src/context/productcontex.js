@@ -9,6 +9,8 @@ const API = "https://api.pujakaitem.com/api/products";
     isError: false,
     products:[],
     featureProducts:[],
+    isSingleloading : false,
+    singleProduct: {} ,
  }
  
  
@@ -23,23 +25,29 @@ const [state , dispatch] = useReducer(reducer,initialState);
    try{
     const res = await axios.get(url);
     const products = await res.data;
-    dispatch({type: " MY_API_DATA" ,playload: products});
+    dispatch({type: " SET_SINGLE_LOADING" ,playload: products});
    } catch (error){
-dispatch({type:"API_ERROR "})
+dispatch({type:"API_ERROR "});
     }
+    const getSingleproduct = async(url) => {
+try{
+    const res = await axios.get(url);
+    const Singleproductproducts = await res.data;
+    dispatch({type: " MY_SINGLE_PRODUCT" ,playload: singleProduct});
+} catch (error){
+    dispatch( type :" SET_SINGLE_ERROR")
+}
+
+    };
     
-    
-console. log (
-    " ~ file:productcontext.js ~ line 10  ~getProducts ~ res" ,
-    res
-);
+
 
    };
    useEffect(() => {  
     getProducts(API);
 },[]);
     return (
-        <AppContext.Provider> value= {{...state}}{children}</AppContext.Provider>
+        <AppContext.Provider> value= {{...state,getSingleproduct}}{children}</AppContext.Provider>
     );
 };
 //coustom hook
