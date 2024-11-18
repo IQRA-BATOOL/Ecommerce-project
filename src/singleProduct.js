@@ -3,6 +3,11 @@ import {useParams} from "react-router-dom";
 const API = "https://api.pujakaitem.com/api/products"
 import { useEffect } from "react";
 import {useProductContext} from "./context/productcontex";
+import PageNavigation from "./components/PageNavigation";
+import MyImage from "./components/MyImage";
+import {container} from "./styles/Container";
+import {TbTruckDelivery} from "react-icons/tb";
+import {MdSecurity} from "react-icons/md";
 
 
 const singleProduct = ()  =>{
@@ -30,9 +35,67 @@ useEffect (() => {
   getSingleProduct(`${API}?id = ${id}`);
 } , []);
 }
+if (issingleloading){
+  return <div className="page_loading">loading.............</div>
+}
 
 
-return <h1>single page</h1>;
+return <Wrapper> 
+  <PageNavigation title = {name}/>
+  <container className  = "container">
+    <div className="grid grid-two-column">
+      <MyImage imags =  {image}/>
+    </div>
+    <div className  = "product-data "></div>
+    <h2>name</h2>
+    <p>{stars}</p>
+    <p>{reviews}reviews</p>
+   <p className="product-data-price">MRP:
+    <del>
+      <FormatPrice price = {price+25000}/>
+    </del>
+<p className="product-data-price product-data-real-price">Deal of the Day: <FormatPrice price= {price}/>
+   </p>
+   <p> {description}</p>
+   <div className="product-data-warranty">
+
+    <div className="product-warranty-data">
+    <TbTruckDelivery className = "warranty-icon"/>
+    <p> free Delivery</p>
+
+    </div>
+<div className="product-warranty-data">
+<TbReplace className = "warrantly-icon "/>
+<p> 30 Days Replacement </p>
+</div>
+
+<div className="product-warranty-data">
+<TbTruckDelivery className = "warrantly-icon "/>
+<p> Thapa Delivered </p>
+</div>
+
+
+<div className="product-warranty-data">
+<MdSecurity className = "warrantly-icon "/>
+<p> 2 Year warrantly </p>
+</div>
+<div className="product-data-info">
+  <p> Available : 
+    <span>{stock > 0 ? "In stock " : "Not Available"} </span>
+       </p>
+   <p> 
+    ID : <span>  {id} </span>
+
+   </p>
+  <p> 
+    Brand : <span> {comapny}</span>
+  </p>
+   </div>
+
+   </div>
+   </p>
+  </container>
+</Wrapper>
 };
 const Wrapper = styled.section`
   .container {

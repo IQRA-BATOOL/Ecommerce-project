@@ -3,8 +3,8 @@ import styled from "styled-components";
 import {Button} from "../styles/Button"
 const HeroSection = ({myData}) => {
     console.log (
-        "~ file: HeroSection.js ~ line 6 ~ HeroSection ~ myData" , myData",
-        myData
+        "~ file: HeroSection.js ~ line 6 ~ HeroSection ~ myData" , myData
+        
     );
   return (
     <Wrapper>
