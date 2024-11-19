@@ -6,8 +6,10 @@ import {useProductContext} from "./context/productcontex";
 import PageNavigation from "./components/PageNavigation";
 import MyImage from "./components/MyImage";
 import {container} from "./styles/Container";
-import {TbTruckDelivery} from "react-icons/tb";
+import {TbTruckDelivery, TbReplace} from "react-icons/tb";
 import {MdSecurity} from "react-icons/md";
+import  FormatPrice from "./Helpers/FormatPrice";
+import Star from "./components/stars";
 
 
 const singleProduct = ()  =>{
@@ -48,8 +50,9 @@ return <Wrapper>
     </div>
     <div className  = "product-data "></div>
     <h2>name</h2>
-    <p>{stars}</p>
-    <p>{reviews}reviews</p>
+<Star star ={star}  reviews = {reviews} />
+
+    
    <p className="product-data-price">MRP:
     <del>
       <FormatPrice price = {price+25000}/>
