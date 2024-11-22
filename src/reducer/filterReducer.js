@@ -12,7 +12,12 @@ const filterReducer = (state ,  action) => {
       ...state,
       gride_view : true
 
-    }
+    };
+    case "SET_LIST_VIEW":
+      return {
+         ...state,
+         grid_view: false,
+      };
 
 
 
