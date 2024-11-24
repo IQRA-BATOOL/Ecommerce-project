@@ -21,7 +21,8 @@ const setGridView = () => {
         return dispatch(type : "SET_List_VIEW")};
 
     //sorting function 
-    const sorting = () => {
+    const sorting = (event) => {
+        let userValue = event.target.value;
         dispatch ({ type : "GET_SORT_VALUE "});
     };
 useEffect(() => {
