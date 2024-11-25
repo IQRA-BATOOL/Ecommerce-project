@@ -1,4 +1,4 @@
-const filterReducer = (state ,  action) => {
+const filterReducer = (state ,  action ) => {
 
  switch (action.type){
  case "LOAD_FILTER_PRODUCTS":
@@ -51,7 +51,7 @@ const filterReducer = (state ,  action) => {
         }
       };
 
-      newSortData = tempSortProduct.sort(sortingProducts);
+      // newSortData = tempSortProduct.sort(sortingProducts);
 
       return {
         ...state,
@@ -72,7 +72,7 @@ return {
     let { all_poroducts} = state;
     let tempFilterProduct =[...all_poroducts];
 
-const {text, category, company } = state.filters;
+const {text, category, company , color } = state.filters;
 if (text) {
   tempFilterProduct =  tempFilterProduct.filter ((curElem)=> {
  return curElem.name.tolowerCase().includes(text);
@@ -92,20 +92,15 @@ if (company ===! " all"){
 
   );
 }
+ if(color){
 
 
+tempFilterProduct = tempFilterProduct.filter(
+  (curElem)=> curElem.colors.includes (color)
+   
 
-
-
-
-
-
-
-
-
-
-
-
+);
+};
     return {
       ...state,
       filter_products: tempFilterProduct,

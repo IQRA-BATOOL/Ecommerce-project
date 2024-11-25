@@ -49,12 +49,6 @@ const colorsData = getUniqueData( all_products,"colors");
   </div>
 
 
-
-
-
-
-
-
    <div className='  filter_category'> 
      <h3> Category</h3>
      <div>{categoryOnlyData .map ((curElem ,index) =>{
@@ -83,16 +77,35 @@ const colorsData = getUniqueData( all_products,"colors");
 
  )
 
-      }
-    }
+      };
+    };
   </select>
 </form>
 
 
   </div>
+  <div className="filter-colors" >
+<h3> Colors</h3>
+<div className="Filter-color-style">{
+  colorsData.map ((curColor , index) => {
+    return <button 
+     type =  "button"
+     value = {curElem}
+     style = {{backgroundColor : "curColor"}}
+     className=" btnStyle "
+     onClick={updateFiltterValue}
+    >
+      { color === curColor ? " " : null }</button>
+  })
+  }
+
+</div>
+
+
+  </div>
    </Wrapper>
-    
-  )
+  )  
+  
 };
 const Wrapper = styled.section`
   padding: 5rem 0;
