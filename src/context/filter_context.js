@@ -18,7 +18,7 @@ const initialState = {
 p
     const [state , dispatch ] = useReducer(reducer,initialState);
 const setGridView = () => {
-    return dispatch(type : "SET_GRID_VIEW")};
+    return dispatch(type: "SET_GRID_VIEW")};
 
 
     const setListView = () => {

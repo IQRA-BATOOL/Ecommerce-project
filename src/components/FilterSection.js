@@ -4,8 +4,20 @@ import { useFilterContext } from '../context/filter_context';
 const FilterSection = () => {
     const {
         filter :{text},
+        all_products,
         updateFiltterValue,
 } = useFilterContext ();
+const getUniqueData = (data.property) => {
+  let newVal = data.map((curElem) => {
+    return curElem[property];
+
+  });
+
+newVal = [ "Ali" ,...new Set(newVal)];
+console.log(newVal);
+};
+const categoryOnlyData = getUniqueData( all_products,"category");
+
   return (
 
     <Wrapper>
@@ -18,7 +30,7 @@ const FilterSection = () => {
     </Wrapper>
     
   )
-}
+};
 const Wrapper = styled.section`
   padding: 5rem 0;
   display: flex;

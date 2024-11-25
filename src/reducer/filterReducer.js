@@ -75,7 +75,7 @@ return {
 const {text } = state.filters;
 if (text) {
   tempFilterProduct =  tempFilterProduct.filter ((curElem)=> {
- return .curElem.name.tolowerCase().includes(text);
+ return curElem.name.tolowerCase().includes(text);
   })
 }
 
@@ -87,6 +87,7 @@ if (text) {
    default :
    return state ;
 
+}
 };
 
 export default filterReducer;
