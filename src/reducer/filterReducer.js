@@ -78,14 +78,14 @@ if (text) {
  return curElem.name.tolowerCase().includes(text);
   })
 }
-// if (category){
-//   tempFilterProduct = tempFilterProduct.filter((curElem)=>
-//      curElem.category === category
+if (category ===! "all"){
+  tempFilterProduct = tempFilterProduct.filter((curElem)=>
+     curElem.category === category
 
-//   );
-// }
+  );
+}
 
-if (company){
+if (company ===! " all"){
   tempFilterProduct = tempFilterProduct.filter(
     (curElem)=>
      curElem.company.tolowerCase === company.tolowerCase ()

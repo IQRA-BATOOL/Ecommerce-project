@@ -15,11 +15,23 @@ const getUniqueData = (data.property) => {
 
   });
 
-returnnewVal = [ "Ali" ,...new Set(newVal)];
-console.log(newVal);
+  if (attr === "colors"){
+
+    // return    (  newVal= [ "All" ,...new Set([].concat (...arr))]);
+   newVal = newVal.flat ();
+  }
+
+
+  return  ( newVal = [ "Ali" ,...new Set(newVal)]);
+
+// console.log(newVal);
 };
+
+
 const categoryData = getUniqueData( all_products,"category");
 const companyData = getUniqueData( all_products,"company");
+const colorsData = getUniqueData( all_products,"colors");
+
   return (
 
     <Wrapper>
