@@ -57,7 +57,35 @@ const filterReducer = (state ,  action) => {
         ...state,
         filter_products: newSortData,
       };
-   
+   case "UPDATE_FILTER_VALUE" :
+    const {name , value} = action.payload;
+
+return {
+  ...state,
+  filters: {
+    ...state.filters,
+    [name] : value ,
+  },
+}
+
+  case "FILTER_PRODUCTS":
+    let { all_poroducts} = state;
+    let tempFilterProduct =[...all_poroducts];
+
+const {text } = state.filters;
+if (text) {
+  tempFilterProduct =  tempFilterProduct.filter ((curElem)=> {
+ return .curElem.name.tolowerCase().includes(text);
+  })
+}
+
+
+    return {
+      ...state,
+      filter_products: tempFilterProduct,
+    };
+   default :
+   return state ;
 
 };
 
