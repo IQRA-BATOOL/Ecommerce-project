@@ -72,18 +72,39 @@ return {
     let { all_poroducts} = state;
     let tempFilterProduct =[...all_poroducts];
 
-const {text } = state.filters;
+const {text, category, company } = state.filters;
 if (text) {
   tempFilterProduct =  tempFilterProduct.filter ((curElem)=> {
  return curElem.name.tolowerCase().includes(text);
   })
 }
-if (category){
-  tempFilterProduct = tempFilterProduct.filter((curElem)=>{
-    return curElem.category === category;
+// if (category){
+//   tempFilterProduct = tempFilterProduct.filter((curElem)=>
+//      curElem.category === category
 
-  });
+//   );
+// }
+
+if (company){
+  tempFilterProduct = tempFilterProduct.filter(
+    (curElem)=>
+     curElem.company.tolowerCase === company.tolowerCase ()
+
+  );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     return {
       ...state,

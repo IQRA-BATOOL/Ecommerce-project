@@ -1,6 +1,8 @@
-import React from 'react'
 import styled from "styled-components";
-import { useFilterContext } from '../context/filter_context';
+import { useFilterContext } from "../context/filter_context";
+import { FaCheck } from "react-icons/fa";
+import FormatPrice from "../Helpers/FormatPrice";
+import { Button } from "../styles/Button";
 const FilterSection = () => {
     const {
         filter :{text, category},
@@ -16,17 +18,31 @@ const getUniqueData = (data.property) => {
 returnnewVal = [ "Ali" ,...new Set(newVal)];
 console.log(newVal);
 };
-const categoryOnlyData = getUniqueData( all_products,"category");
-
+const categoryData = getUniqueData( all_products,"category");
+const companyData = getUniqueData( all_products,"company");
   return (
 
     <Wrapper>
   <div className='filter-search'>
     <form onSubmit = {(e) => e.preventDefault()}>
-      <input type = "text" name = "text" value = { text} onChange={updateFiltterValue}>
+      <input 
+      type = "text" 
+      name = "text"
+      placeholder='seach'
+       value = { text}
+       onChange={updateFiltterValue}
+       >
       </input>  
     </form>
   </div>
+
+
+
+
+
+
+
+
    <div className='  filter_category'> 
      <h3> Category</h3>
      <div>{categoryOnlyData .map ((curElem ,index) =>{
@@ -38,10 +54,31 @@ const categoryOnlyData = getUniqueData( all_products,"category");
 
  
      })}</div>
-    
-    
-    </div>
-    </Wrapper>
+     </div>
+<div className=" filter-company">
+  <h3> company</h3>
+<form action="#">
+
+  <select  name="comapny" id = "company  " className="filter-company-select" onClick={updateFiltterValue}>
+    {
+      companyData.map(curElem , index) =>   {
+
+ return (
+  <option key = {index}
+  value = { curElem}
+  name = "company"
+  >{curElem}</option>
+
+ )
+
+      }
+    }
+  </select>
+</form>
+
+
+  </div>
+   </Wrapper>
     
   )
 };
