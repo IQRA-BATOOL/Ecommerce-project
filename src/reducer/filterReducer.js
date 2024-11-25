@@ -78,7 +78,12 @@ if (text) {
  return curElem.name.tolowerCase().includes(text);
   })
 }
+if (category){
+  tempFilterProduct = tempFilterProduct.filter((curElem)=>{
+    return curElem.category === category;
 
+  });
+}
 
     return {
       ...state,

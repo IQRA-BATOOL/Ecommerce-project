@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useFilterContext } from '../context/filter_context';
 const FilterSection = () => {
     const {
-        filter :{text},
+        filter :{text, category},
         all_products,
         updateFiltterValue,
 } = useFilterContext ();
@@ -13,7 +13,7 @@ const getUniqueData = (data.property) => {
 
   });
 
-newVal = [ "Ali" ,...new Set(newVal)];
+returnnewVal = [ "Ali" ,...new Set(newVal)];
 console.log(newVal);
 };
 const categoryOnlyData = getUniqueData( all_products,"category");
@@ -27,6 +27,20 @@ const categoryOnlyData = getUniqueData( all_products,"category");
       </input>  
     </form>
   </div>
+   <div className='  filter_category'> 
+     <h3> Category</h3>
+     <div>{categoryOnlyData .map ((curElem ,index) =>{
+   return <button key = {index}
+    type = " button "type = "button" name = "category" value = {curElem} onClick = {updateFiltterValue}
+    >
+     {curElem}
+    </button>;
+
+ 
+     })}</div>
+    
+    
+    </div>
     </Wrapper>
     
   )
