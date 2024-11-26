@@ -92,7 +92,7 @@ if (company ===! " all"){
 
   );
 }
- if(color){
+ if(color  ===! "all"){
 
 
 tempFilterProduct = tempFilterProduct.filter(

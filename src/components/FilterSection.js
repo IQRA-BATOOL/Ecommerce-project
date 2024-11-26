@@ -88,16 +88,37 @@ const colorsData = getUniqueData( all_products,"colors");
 <h3> Colors</h3>
 <div className="Filter-color-style">{
   colorsData.map ((curColor , index) => {
-    return <button 
+
+    if (curColor === "all")
+    return(
+   
+    <button 
+    key ={index}
      type =  "button"
      value = {curElem}
-     style = {{backgroundColor : "curColor"}}
-     className=" btnStyle "
+     name="color"
+    // style = {{backgroundColor : "curColor"}}
+    className=" color-all-style "
      onClick={updateFiltterValue}
     >
-      { color === curColor ? " " : null }</button>
+      all
+      </button>
   })
-  }
+  };
+return <button 
+key ={index}
+     type =  "button"
+     value = {curElem}
+     name="color"
+     style = {{backgroundColor : "curColor"}}
+     className= { color === curColor ?   "  btnStyle class"   : "btnstyle}" btnStyle "
+     onClick={updateFiltterValue}
+    >
+      { color === curColor ? <FaCheck className = " checkStyle" />: null }</button>
+  })
+  };
+
+
 
 </div>
 
