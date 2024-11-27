@@ -3,131 +3,149 @@ import { useFilterContext } from "../context/filter_context";
 import { FaCheck } from "react-icons/fa";
 import FormatPrice from "../Helpers/FormatPrice";
 import { Button } from "../styles/Button";
+
 const FilterSection = () => {
-    const {
-        filter :{text, category},
-        all_products,
-        updateFiltterValue,
-} = useFilterContext ();
-const getUniqueData = (data.property) => {
-  let newVal = data.map((curElem) => {
-    return curElem[property];
+  const {
+    filters: { text, category, color, price, maxPrice, minPrice },
+    updateFilterValue,
+    all_products,
+    clearFilters,
+  } = useFilterContext();
 
-  });
+  // get the unique values of each property
+  const getUniqueData = (data, attr) => {
+    let newVal = data.map((curElem) => {
+      return curElem[attr];
+    });
 
-  if (attr === "colors"){
+    if (attr === "colors") {
+      // return (newVal = ["All", ...new Set([].concat(...newVal))]);
+      newVal = newVal.flat();
+    }
 
-    // return    (  newVal= [ "All" ,...new Set([].concat (...arr))]);
-   newVal = newVal.flat ();
-  }
+    return (newVal = ["all", ...new Set(newVal)]);
+  };
 
-
-  return  ( newVal = [ "Ali" ,...new Set(newVal)]);
-
-// console.log(newVal);
-};
-
-
-const categoryData = getUniqueData( all_products,"category");
-const companyData = getUniqueData( all_products,"company");
-const colorsData = getUniqueData( all_products,"colors");
+  // we need to have the individual data of each in an array format
+  const categoryData = getUniqueData(all_products, "category");
+  const companyData = getUniqueData(all_products, "company");
+  const colorsData = getUniqueData(all_products, "colors");
+  // console.log(
+  //   "🚀 ~ file: FilterSection.js ~ line 23 ~ FilterSection ~ companyData",
+  //   colorsData
+  // );
 
   return (
-
     <Wrapper>
-  <div className='filter-search'>
-    <form onSubmit = {(e) => e.preventDefault()}>
-      <input 
-      type = "text" 
-      name = "text"
-      placeholder='seach'
-       value = { text}
-       onChange={updateFiltterValue}
-       >
-      </input>  
-    </form>
-  </div>
+      <div className="filter-search">
+        <form onSubmit={(e) => e.preventDefault()}>
+          <input
+            type="text"
+            name="text"
+            placeholder="Search"
+            value={text}
+            onChange={updateFilterValue}
+          />
+        </form>
+      </div>
 
+      <div className="filter-category">
+        <h3>Category</h3>
+        <div>
+          {categoryData.map((curElem, index) => {
+            return (
+              <button
+                key={index}
+                type="button"
+                name="category"
+                value={curElem}
+                className={curElem === category ? "active" : ""}
+                onClick={updateFilterValue}>
+                {curElem}
+              </button>
+            );
+          })}
+        </div>
+      </div>
 
-   <div className='  filter_category'> 
-     <h3> Category</h3>
-     <div>{categoryOnlyData .map ((curElem ,index) =>{
-   return <button key = {index}
-    type = " button "type = "button" name = "category" value = {curElem} onClick = {updateFiltterValue}
-    >
-     {curElem}
-    </button>;
+      <div className="filter-company">
+        <h3>Company</h3>
 
- 
-     })}</div>
-     </div>
-<div className=" filter-company">
-  <h3> company</h3>
-<form action="#">
+        <form action="#">
+          <select
+            name="company"
+            id="company"
+            className="filter-company--select"
+            onClick={updateFilterValue}>
+            {companyData.map((curElem, index) => {
+              return (
+                <option key={index} value={curElem} name="company">
+                  {curElem}
+                </option>
+              );
+            })}
+          </select>
+        </form>
+      </div>
 
-  <select  name="comapny" id = "company  " className="filter-company-select" onClick={updateFiltterValue}>
-    {
-      companyData.map(curElem , index) =>   {
+      <div className="filter-colors colors">
+        <h3>Colors</h3>
 
- return (
-  <option key = {index}
-  value = { curElem}
-  name = "company"
-  >{curElem}</option>
+        <div className="filter-color-style">
+          {colorsData.map((curColor, index) => {
+            if (curColor === "all") {
+              return (
+                <button
+                  key={index}
+                  type="button"
+                  value={curColor}
+                  name="color"
+                  className="color-all--style"
+                  onClick={updateFilterValue}>
+                  all
+                </button>
+              );
+            }
+            return (
+              <button
+                key={index}
+                type="button"
+                value={curColor}
+                name="color"
+                style={{ backgroundColor: curColor }}
+                className={color === curColor ? "btnStyle active" : "btnStyle"}
+                onClick={updateFilterValue}>
+                {color === curColor ? <FaCheck className="checkStyle" /> : null}
+              </button>
+            );
+          })}
+        </div>
+      </div>
 
- )
+      <div className="filter_price">
+        <h3>Price</h3>
+        <p>
+          <FormatPrice price={price} />
+        </p>
+        <input
+          type="range"
+          name="price"
+          min={minPrice}
+          max={maxPrice}
+          value={price}
+          onChange={updateFilterValue}
+        />
+      </div>
 
-      };
-    };
-  </select>
-</form>
-
-
-  </div>
-  <div className="filter-colors" >
-<h3> Colors</h3>
-<div className="Filter-color-style">{
-  colorsData.map ((curColor , index) => {
-
-    if (curColor === "all")
-    return(
-   
-    <button 
-    key ={index}
-     type =  "button"
-     value = {curElem}
-     name="color"
-    // style = {{backgroundColor : "curColor"}}
-    className=" color-all-style "
-     onClick={updateFiltterValue}
-    >
-      all
-      </button>
-  })
-  };
-return <button 
-key ={index}
-     type =  "button"
-     value = {curElem}
-     name="color"
-     style = {{backgroundColor : "curColor"}}
-     className= { color === curColor ?   "  btnStyle class"   : "btnstyle}" btnStyle "
-     onClick={updateFiltterValue}
-    >
-      { color === curColor ? <FaCheck className = " checkStyle" />: null }</button>
-  })
-  };
-
-
-
-</div>
-
-
-  </div>
-   </Wrapper>
-  )  
-  
+      <div className="filter-clear">
+        <Button className="btn" onClick={clearFilters}>
+          Clear Filters
+        </Button>
+      </div>
+    </Wrapper>
+  );
 };
+
 const Wrapper = styled.section`
   padding: 5rem 0;
   display: flex;
@@ -235,4 +253,4 @@ const Wrapper = styled.section`
   }
 `;
 
-export default FilterSection
+export default FilterSection;
