@@ -43,6 +43,12 @@ const setGridView = () => {
         return dispatch({type : "UPDATE_FILTER_VALUE ",payload : {name , value}})
 
     };
+
+
+
+    const clearFilters  = () => {
+        dispatch ({type : "CLEAR _FILTERS"})
+    }
 useEffect(() => {
 console.lod("hi");
 }, [state.sorting_value]);
@@ -54,7 +60,7 @@ console.lod("hi");
            dispatch ({type : "LOAD _FILTER_PRODUCTS" });
     }, [ products, state.sorting_value ,  state.filters]);
  return (
- <FilterContext.Provider value = {{ ...state , setGridView , setListView, sorting,updateFiltterValue}}>
+ <FilterContext.Provider value = {{ ...state , setGridView , setListView, sorting,updateFiltterValue,clearFilters}}>
     {children}
 
     </FilterContext.Provider>

@@ -142,6 +142,7 @@ const FilterSection = () => {
           Clear Filters
         </Button>
       </div>
+      
     </Wrapper>
   );
 };
