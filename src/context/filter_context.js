@@ -10,7 +10,14 @@ const initialState = {
   grid_view: true,
   sorting_value: "lowest",
   Filters:
-  text=""
+  {
+    text=" ",
+  category :   "all" ,
+  color : " all",
+  maxPrice: 0,
+  price :    0,
+  minPrice : 0,
+  },
 
 };
  export const FilterContextProvider = ({children}) => {
